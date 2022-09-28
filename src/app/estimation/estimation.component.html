@@ -1,0 +1,248 @@
+
+                <div class="card">
+                    <div class="header">
+
+                      <h4 class="title"><span class="bi bi-telephone"></span> Gestion des salles de réunion</h4>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                     <!--  <p class="category">Gestion  des Salles de réunions</p> -->
+<!--                       <button  title="Ajouter une salle"
+                        class="btn btn-info btn-fill bi bi-plus"  (click)="onNewEstimation()" ></button> -->
+
+                    </div>
+
+                  <!--
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid row">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col align-self-end">
+                <a class="navbar-brand" href="#">Planning Poker</a>
+            </div>
+            <div class="col align-self-center align-item-navbar">
+                <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link" href="#plan"><i class="bi bi-joystick"> CRIAR SESSÃO</i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#entrarSessao" href=""><i class="bi bi-box-arrow-in-right"> ENTRAR SESSÃO</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Página -->
+<div class="container ma-top">
+    <div class="row">
+        <div class="col">
+            <img class="img-background" src="../../assets/background.jpg" alt="Planejamento com planning poker">
+        </div>
+        <div class="col">
+            <form [formGroup]="formCriaSessao" (ngSubmit)="criarSessao()" class="form-detail">
+                <div class="mb-3">
+                  <p class="title-form">Commencer poker game</p>
+
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Nom salle</label>
+
+                    <input formControlName="nomeSala" type="text" class="form-control" placeholder="Nom salle" aria-label="nomSalle" name="nomSalle">
+                 
+                 <!--  <input formControlName="nomeSala" type="text" class="form-control input-borda"> -->
+                </div>
+                <div class="row g-4">
+                  <div class="col-sm">
+                    <label class="form-label">Système de vote</label>
+                    <mat-select class="form-control" formControlName="tipoCarta" name="suite" placeholder="Système de vote" aria-label="suite">
+                      <mat-option value="1">Fibonacci</mat-option>
+                      <mat-option value="2">Fibonacci curto </mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+<!--                 <div class="mb-3">
+                    <label class="form-label">System vote</label>
+                    <select class="form-select input-borda" formControlName="tipoCarta" required>
+                        <option value="1">Fibonacci</option>
+                        <option value="2">Fibonacci curto</option>
+                    </select>
+                </div> -->
+                <div class="row g-4">
+                  <div class="col-sm">
+                    <div class="form-check form-switch">
+                        <input formControlName="espectador" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Spectateur?</label>
+                    </div>
+                </div>
+                </div>
+                <button [disabled]="!formCriaSessao.valid" type="submit" class="btn btn-info btn-fill float-right">Play</button>
+                <!-- <button [disabled]="!formCriaSessao.valid" type="submit" class="btn btn-primary  button-border">Play</button> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal entrar em sessão existente -->
+<div class="modal fade" id="entrarSessao" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Entrer salle <i class="bi bi-file-ppt"></i></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="formEntrarSessao" (ngSubmit)="entrarSessao()">
+            <div class="modal-body">
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">name</label>
+                  <input formControlName="nomeUsuario" type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">ID salle</label>
+                    <input formControlName="idSala" type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <div class="form-check form-switch">
+                        <input formControlName="espectador" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">spectateur?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary button-border" data-bs-dismiss="modal">join</button>
+                <button [disabled]="!formEntrarSessao.valid" type="submit" class="btn btn-primary button-border" data-bs-dismiss="modal">Entrar salle</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!--                    <div class="content">
+                      <div *ngIf="mode=='new-estimation'" class="container ">
+                        <div class="row">
+                          <div class="col-md-12 card">
+                            <div class="header">
+                              <h4 class="title">Ajouter une salle</h4>
+                            </div>
+                            <div class="content">
+                              <form>
+
+                                <div class="row g-3">
+                                  <div class="col-sm">
+                                    <input type="text" class="form-control" placeholder="Nom salle" aria-label="nomSalle" [(ngModel)]="est.rName" name="nomSalle">
+                                  </div>
+                                </div>
+                                <div class="row g-4">
+                                  <div class="col-sm">
+                                    <mat-select class="form-control"[(ngModel)]="est.suite" name="suite" placeholder="Suite" aria-label="suite">
+                                      <mat-option value="Fibonacci">Fibonacci</mat-option>
+                                      <mat-option value="T-shirt">T-shirt </mat-option>
+                                      <mat-option value="Scrum">Scrum</mat-option>
+                                    </mat-select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <button type="reset" (click)="onCancel()"
+                                      class="btn btn-secondary btn-fill float-right">Annuler</button>
+                                    <button type="submit" class="btn btn-info btn-fill float-right" (click)="onSubmit()">Ajouter</button>
+
+
+                                  </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br>
+                              </form>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                       <div *ngIf="mode == 'list'" class="content">
+                        <div class="search-name">
+                          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH  ">
+                          </div>
+                        <div class="ct-chart">
+                          <div class="table-full-width">
+                            <table class="table table-hover table-striped">
+                              <thead>
+                                <tr>
+                                  <th class="text-center"> </th>
+                                  <th class="text-center"> Nom</th>
+                                  <th class="text-center"> Suite </th>
+
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let est of estimationlist | paginate: { itemsPerPage: 3, currentPage: p, totalItems: total } | filter:searchText">
+                                  <td class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="bi bi-telephone"></i>
+                                  </td>
+                                  <td class="text-center">{{est?.rName}}</td>
+                                  <td class="text-center">{{est?.suite}}</td>
+
+                                   <td class="text-center">
+                                    <button type="button" rel="tooltip" title="Modifier" class="btn btn-info btn-simple btn-xs" (click)="updateEstimation(est.id)" >
+                                      <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                  </td>
+                                  <td class="text-center">
+
+                                    <button  type="button" rel="tooltip" title="Supprimer" class="btn btn-info btn-simple btn-xs" (click)=" onDeleteEstimation(est.id)"  >
+                                      <i class="bi bi-trash"></i>
+                                    </button>
+                                  </td>
+                                  <td class="text-center">
+
+                                  </td>
+                                  <td class="text-center">
+
+                                  </td>
+
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <div class="footer">
+                              <div *ngIf="mode == 'list'" class="legend text-center" >
+                                <div class="pagination pagination-primary ">
+                                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                                  </div>
+                                <br>
+                              </div>
+                              <hr *ngIf="true">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div> -->
+<br>
+<br>
+<br>
+<br>
+
+<div class="list row">
+  
+  <div class="col-md-6">
+    <h4>Votes List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let vote of votes; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveVote(vote, i)"
+      >
+        {{ vote.userStory }}
+      </li>
+    </ul>
+
+
+  </div>
+
+</div>
+
+            </div>
+
+
